@@ -43,6 +43,7 @@ namespace Hamburgercim
             this.txtToplamFiyat = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnSiparisOK = new System.Windows.Forms.Button();
             this.groupBoxBoyut.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAdet)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -51,16 +52,17 @@ namespace Hamburgercim
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Location = new System.Drawing.Point(11, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 21);
+            this.label1.Size = new System.Drawing.Size(111, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Menu Seçin";
             // 
             // cmBoxMenu
             // 
             this.cmBoxMenu.FormattingEnabled = true;
-            this.cmBoxMenu.Location = new System.Drawing.Point(16, 33);
+            this.cmBoxMenu.Location = new System.Drawing.Point(16, 52);
             this.cmBoxMenu.Name = "cmBoxMenu";
             this.cmBoxMenu.Size = new System.Drawing.Size(251, 29);
             this.cmBoxMenu.TabIndex = 1;
@@ -146,13 +148,13 @@ namespace Hamburgercim
             this.listBoxSepet.ItemHeight = 21;
             this.listBoxSepet.Location = new System.Drawing.Point(298, 33);
             this.listBoxSepet.Name = "listBoxSepet";
-            this.listBoxSepet.Size = new System.Drawing.Size(612, 214);
+            this.listBoxSepet.Size = new System.Drawing.Size(612, 319);
             this.listBoxSepet.TabIndex = 8;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(399, 299);
+            this.label3.Location = new System.Drawing.Point(294, 431);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 21);
             this.label3.TabIndex = 9;
@@ -160,7 +162,7 @@ namespace Hamburgercim
             // 
             // txtToplamFiyat
             // 
-            this.txtToplamFiyat.Location = new System.Drawing.Point(513, 296);
+            this.txtToplamFiyat.Location = new System.Drawing.Point(408, 428);
             this.txtToplamFiyat.Name = "txtToplamFiyat";
             this.txtToplamFiyat.Size = new System.Drawing.Size(100, 29);
             this.txtToplamFiyat.TabIndex = 10;
@@ -184,11 +186,22 @@ namespace Hamburgercim
             this.label4.TabIndex = 0;
             this.label4.Text = "Extra Malzemeler";
             // 
+            // btnSiparisOK
+            // 
+            this.btnSiparisOK.Location = new System.Drawing.Point(659, 422);
+            this.btnSiparisOK.Name = "btnSiparisOK";
+            this.btnSiparisOK.Size = new System.Drawing.Size(251, 39);
+            this.btnSiparisOK.TabIndex = 12;
+            this.btnSiparisOK.Text = "Siparişi Tamamla";
+            this.btnSiparisOK.UseVisualStyleBackColor = true;
+            this.btnSiparisOK.Click += new System.EventHandler(this.btnSiparisOK_Click);
+            // 
             // SiparisOlustur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(922, 473);
+            this.Controls.Add(this.btnSiparisOK);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.txtToplamFiyat);
             this.Controls.Add(this.label3);
@@ -232,5 +245,6 @@ namespace Hamburgercim
         private System.Windows.Forms.TextBox txtToplamFiyat;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnSiparisOK;
     }
 }

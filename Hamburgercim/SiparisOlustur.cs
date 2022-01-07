@@ -62,8 +62,6 @@ namespace Hamburgercim
             extras.Add(extra);
         }
 
-        int x = 13;
-        int y = 28;
         private void SiparisOlustur_Load(object sender, EventArgs e)
         {
             lsBoxDoldur();
@@ -97,14 +95,23 @@ namespace Hamburgercim
 
         private void CmBoxMenuFill()
         {
-            foreach (var menu in menus)
-            {
-                cmBoxMenu.Items.Add(menu.MenuAd);
-            }
-            cmBoxMenu.SelectedIndex = 0;
+
+            cmBoxMenu.DataSource = menus;
+            cmBoxMenu.DisplayMember = "MenuAd";
+
+            //foreach (var menu in menus)
+            //{
+            //    cmBoxMenu.Items.Add(menu.MenuAd);
+            //}
+            //cmBoxMenu.SelectedIndex = 0;
         }
 
-        static List<Siparis> siparisler = new List<Siparis>();
+        public static List<Siparis> siparisler = new List<Siparis>();
+        public static List<Siparis> OnaylananSiparisler = new List<Siparis>();
+        public static List<Siparis> GetOnaylananSiparisler()
+        {
+            return OnaylananSiparisler;
+        }
         public static List<Siparis> GetSiparis()
         {
             return siparisler;
@@ -123,16 +130,29 @@ namespace Hamburgercim
         }
         private void btnSiparisEkle_Click(object sender, EventArgs e)
         {
-            var secilen = cmBoxMenu.SelectedItem.ToString();
-            foreach (var menu in menus)
-            {
-                if (menu.MenuAd == secilen)
-                {
-                    secilenMenu = new Menu();
-                    secilenMenu.MenuAd = menu.MenuAd;
-                    secilenMenu.MenuFiyat = menu.MenuFiyat;
-                }
-            }
+            Siparis yeniSiparis = new Siparis();
+
+            yeniSiparis.Menu = (Menu)cmBoxMenu.SelectedItem;
+
+
+
+
+
+
+
+
+
+            //var secilen = cmBoxMenu.SelectedItem.ToString();
+
+            //foreach (var menu in menus)
+            //{
+            //    if (menu.MenuAd == secilen)
+            //    {
+            //        secilenMenu = new Menu();
+            //        secilenMenu.MenuAd = menu.MenuAd;
+            //        secilenMenu.MenuFiyat = menu.MenuFiyat;
+            //    }
+            //}
             //siparis.Add(new Siparis(secilenMenu)
             //{
 
@@ -153,22 +173,28 @@ namespace Hamburgercim
                 secilenMenu.MenuFiyat += 5;
             }
 
+            yeniSiparis.Boyut = secBoyut;
 
-
+            yeniSiparis.Extra = new List<Extra>();
             foreach (CheckBox box in flowLayoutPanel1.Controls.OfType<CheckBox>())
             {
                 if (box.Checked)
                 {
+                    yeniSiparis.Extra.Add((Extra)box.Tag);
                     secExtra.Add(extras[box.TabIndex]);
                     extraArtanFiyat += extras[box.TabIndex].ExtraFiyat;
                     toplamExtraArtanFiyat += extras[box.TabIndex].ExtraFiyat;
                 }
             }
-            secilenMenu.MenuFiyat += extraArtanFiyat;
+            //secilenMenu.MenuFiyat += extraArtanFiyat;
             extraArtanFiyat = 0;
             adet = Convert.ToInt32(numericUpDownAdet.Value);
             toplamSatilanUrunAdedi += adet;
-            secilenMenu.MenuFiyat *= adet;
+            //secilenMenu.MenuFiyat *= adet;
+
+            yeniSiparis.Adet = Convert.ToInt32(numericUpDownAdet.Value);
+            siparisler.Add(yeniSiparis);
+            yeniSiparis.Hesapla();
 
             siparisler.Add(new Siparis()
             {
@@ -215,7 +241,7 @@ namespace Hamburgercim
             listBoxSepet.Items.Clear();
             foreach (var siparis in siparisler)
             {
-                listBoxSepet.Items.Add(siparis.Menu.MenuAd + " , "+ siparis.Adet +" Adet , "+ siparis.Boyut + " Boy , "+ /*ExtraBas(siparis.Extra) +   Bakılacak hata var    */ siparis.Menu.MenuFiyat + " TL");
+                listBoxSepet.Items.Add(siparis.Menu.MenuAd + " , " + siparis.Adet + " Adet , " + siparis.Boyut + " Boy , " + /*ExtraBas(siparis.Extra) +   Bakılacak hata var    */ siparis.Menu.MenuFiyat + " TL");
             }
         }
         string ExtraBas(List<Extra> extras) //  Bakılacak hata var 
@@ -223,10 +249,17 @@ namespace Hamburgercim
             string bas = "";
             foreach (var extra in extras)
             {
-                bas += extra.ExtraAd + " ";  
+                bas += extra.ExtraAd + " ";
             }
             return bas;
         }
 
+        private void btnSiparisOK_Click(object sender, EventArgs e)
+        {
+            foreach (var siparis in siparisler)
+            {
+                OnaylananSiparisler.Add(siparis);
+            }
+        }
     }
 }

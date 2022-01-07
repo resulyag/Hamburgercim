@@ -20,7 +20,8 @@ namespace Hamburgercim
         public List<Siparis> tumSiparisler { get; set; }
         private void SiparisBilgileri_Load(object sender, EventArgs e)
         {
-            tumSiparisler = SiparisOlustur.GetSiparis();
+            SiparisOlustur.siparisler
+            tumSiparisler = SiparisOlustur.GetOnaylananSiparisler();
             foreach (var siparis in tumSiparisler)
             {
                 lsBoxTumSiparisler.Items.Add(siparis.Menu.MenuAd + " , " + siparis.Adet + " Adet , " + siparis.Boyut + " Boy , " + siparis.Menu.MenuFiyat + " TL");
